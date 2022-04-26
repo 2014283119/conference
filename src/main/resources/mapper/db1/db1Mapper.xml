@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangshi.conferencesubscribe.mapper.db1.db1Mapper">
+    <insert id="addManager">
+        INSERT INTO  conference_manager_info (username,usergh) VALUES (#{username},#{usergh})
+    </insert>
+    <delete id="deleteManager">
+        DELETE FROM conference_manager_info where username = #{username} and usergh = #{usergh}
+    </delete>
+
+    <select id="findAll" resultType="conferenceDetail">
+        select * from conference_detail where ifexist = '1'
+    </select>
+
+    <select id="queryLocaltion" resultType="LocaltionMeetingName">
+        select c.id,l.localtion,c.meeting_name,c.cstatus,c.maximum_people
+	        from localtion l,conference_basic c
+	            where c.cstatus=1 and c.ifexist=1
+				      and l.id=c.localtion_id
+    </select>
+    <select id="queryBasicId" resultType="java.lang.Integer">
+        select id from conference_basic where localtion_name=#{localName} and meeting_name=#{meetingName}
+    </select>
+    <select id="queryMeetingAll" resultType="com.tangshi.conferencesubscribe.domain.ConferenceDetail">
+        select username,usergh,yyyt,create_time,begin_time,end_time,uuid,temporal_interval from conference_detail where basic_id =#{basicId}
+    </select>
+    <select id="ifconflict" resultType="java.lang.Integer">
+        select count(id)
+        from conference_detail
+        where basic_id = #{basicId} and ifexist = '1'
+        and
+        (<![CDATA[
+        (end_time <= #{beginTime})
+        or (begin_time >= #{endTime})
+        ]]>)
+    </select>
+    <select id="findAllByBasicId" resultType="java.lang.Integer">
+        select count(id)
+					from conference_detail
+					where ifexist = '1'
+					and basic_id = #{basicId}
+    </select>
+    <select id="findIfManager" resultType="java.lang.Integer">
+        select count(id) from conference_manager_info where username = #{username} and usergh = #{usergh}
+    </select>
+    <select id="selectLocalMeetingById" resultType="com.tangshi.conferencesubscribe.domain.ConferenceBasic">
+        select * from conference_basic where id = #{basicId}
+    </select>
+    <select id="selectManagerAll" resultType="com.tangshi.conferencesubscribe.domain.OrderMsg">
+        select * from conference_manager_info
+    </select>
+    <select id="queryIfExist" resultType="java.lang.Integer">
+        select count(id) from conference_manager_info where username = #{username} and usergh = #{usergh}
+    </select>
+    <select id="queryValidOrInvalidBasicIds" resultType="java.lang.Integer">
+        select c.id
+	        from localtion l,conference_basic c
+		        where c.cstatus=#{cstatus} and c.ifexist=1
+			        and l.id=c.localtion_id
+    </select>
+</mapper>

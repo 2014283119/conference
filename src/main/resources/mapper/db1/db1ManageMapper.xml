@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangshi.conferencesubscribe.mapper.db1.db1ManageMapper">
+    <insert id="insertLocaltion">
+        insert into localtion (localtion) VALUE (#{localtionName})
+    </insert>
+    <select id="queryLocaltion" resultType="LocaltionMeetingName">
+        select c.id,l.localtion,c.meeting_name,c.maximum_people,c.cstatus
+	        from localtion l,conference_basic c
+	            where c.ifexist = 1 and
+					l.id=c.localtion_id
+    </select>
+    <select id="selectIfexist" resultType="java.lang.Integer">
+        select COUNT(*) from localtion where localtion =#{localtionName}
+    </select>
+    <select id="selectMeetingIfexist" resultType="java.lang.Integer">
+        select COUNT(*) from conference_basic where localtion_name = #{localtionName} and meeting_name = #{meetingName}
+    </select>
+    <select id="selectIdByLocaltion" resultType="java.lang.Integer">
+        select id from localtion where localtion = #{localtionName}
+    </select>
+    <select id="selectMeetingIfexistById" resultType="java.lang.Integer">
+
+    </select>
+</mapper>

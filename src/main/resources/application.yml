@@ -1,0 +1,54 @@
+
+
+# datasource
+spring:
+  datasource:
+    db1:
+      jdbc-url: jdbc:mysql://60.188.56.56:3307/db341?serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    db2:
+      jdbc-url: jdbc:sqlserver://10.100.100.52:1433;database=ALARM_CENTER
+      username: zjt
+      password: zjt123
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+server:
+  port: 8089
+
+ding:
+  conferencesubscribe:
+    appKey: "dingwzqbkt0b3tikeikm"
+    appSecret: "jWLpTYMNWWVRrHFwRVnuBjDptZsGCe7_3-SxWD-mo4Dwd8v4u-kHGFU5qyu15zoh"
+    corpId: "dingba72c46cbfefea9b35c2f4657eb6378f"
+    agentId: 1587846212
+    dingAccessToken: "https://oapi.dingtalk.com/gettoken?appkey={appkey}&appsecret={appsecret}"
+    dingGetUserId: "https://oapi.dingtalk.com/user/getuserinfo?access_token={access_token}&code={code}"
+    dingGetUser: "https://oapi.dingtalk.com/user/get?access_token={access_token}&userid={userid}"
+
+#logging.level.mapper的路径=异常级别
+logging:
+  level:
+    com.tangshi.conferencesubscribe.mapper.db1.db1Mapper: debug
+    com.tangshi.conferencesubscribe.mapper.db1.db1ManageMapper: debug
+    com.tangshi.conferencesubscribe.mapper.db2.db2Mapper: debug
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml # mapper映射文件路径
+  type-aliases-package: com.tangshi.conferencesubscribe.domain
+  configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+## mybatis
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/**/*.xml # mapper映射文件路径
+#  type-aliases-package: com.tangshi.conferencesubscribe.domain
+#  # config-location:  # 指定mybatis的核心配置文件
+#  configuration:
+#    #开启驼峰命名
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
