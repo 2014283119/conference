@@ -16,7 +16,7 @@ spring:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 server:
-  port: 8089
+  port: 8080
 
 ding:
   conferencesubscribe:

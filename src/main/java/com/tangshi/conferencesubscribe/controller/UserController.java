@@ -79,7 +79,6 @@ public class UserController {
     public Result order(@RequestBody  String requestBody){
         //String str="[{\"localtion\": \"博纳大厦\",\"meeting_name\": \"会议室1\"},{\"localtion\": \"博纳大厦\",\"meeting_name\": \"会议室2\"},{\"localtion\": \"博纳大厦\",\"meeting_name\": \"会议室3\"},{\"localtion\": \"三市\",\"meeting_name\": \"会议室1\"},{\"localtion\": \"三市\",\"meeting_name\": \"会议室2\"}]";
         List<OrderMsg> orderMsgList = JSON.parseArray(requestBody, OrderMsg.class);
-        System.out.println("orderMsgList :"+orderMsgList);
         Result result;
         try {
             result = userService.order(orderMsgList);

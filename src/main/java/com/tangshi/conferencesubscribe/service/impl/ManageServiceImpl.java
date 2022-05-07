@@ -156,7 +156,6 @@ public class ManageServiceImpl extends ServiceImpl<db1ManageMapper, ConferenceBa
                 return ResultUtil.fail(ResultCodeEnum.PARAMETER_LACK_FAIL);
             }
 
-            //TODO
             //判定meetingName重名的情况
             manageMapper.updateById(orderMsgList.get(0));
             return ResultUtil.success();

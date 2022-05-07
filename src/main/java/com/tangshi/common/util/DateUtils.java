@@ -39,7 +39,6 @@ public class DateUtils {
         try{
             date = StringToDate(str);
         }catch (ParseException e){
-            //TODO
         }
         return date;
     }

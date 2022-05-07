@@ -18,7 +18,6 @@ public class ManageController {
     ManageService manageService;
 
     //查询办公地点对应的会议室
-    //TODO
     @RequestMapping("/queryLocaltion")
     public Result queryLocaltion(){
         return manageService.queryLocaltion();

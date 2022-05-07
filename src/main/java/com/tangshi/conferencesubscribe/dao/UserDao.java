@@ -16,7 +16,6 @@ public class UserDao {
     private com.tangshi.conferencesubscribe.mapper.db1.db1Mapper db1Mapper;
 
     public List<LocaltionMeetingName> queryLocaltion(){
-        //TODO
         List<LocaltionMeetingName> localMeetingNames = null;
         try{
 
