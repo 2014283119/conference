@@ -201,15 +201,6 @@ public class UserServiceImpl extends ServiceImpl<db1Mapper, ConferenceDetail> im
             list.add(result3);
 
             return ResultUtil.success(list);
-
-//            //查询启用basic_id
-//            List<OrderMsg> list = queryValidOrInvalid(1, usergh);
-//            //查询停用basic_id
-//            List<OrderMsg> list2 = queryValidOrInvalid(0, usergh);
-//            HashMap<String,List<OrderMsg>> hashMap = new HashMap<>();
-//            hashMap.put("valid",list);
-//            hashMap.put("invalid",list2);
-//            return ResultUtil.success(hashMap);
         }
         return ResultUtil.fail(ResultCodeEnum.PARAMETER_LACK_FAIL);
     }
